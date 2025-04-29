@@ -12,11 +12,6 @@ import java.util.List;
 @RequestMapping("api/auth")
 public class AuthController {
 
-    //controle da autenticação
-   /* @PostMapping("/login")
-    public String login(@RequestBody LoginRequest request) {
-        if ("admin".equals(request.getUsername()))
-    }*/
 
     public final AuthService authService;
 
