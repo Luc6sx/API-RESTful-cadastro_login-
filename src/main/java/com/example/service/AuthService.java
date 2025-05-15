@@ -7,6 +7,7 @@ import com.example.model.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -16,16 +17,17 @@ import java.util.Optional;
 @AllArgsConstructor
 @Service
 @RequiredArgsConstructor
+
 public class AuthService {
     private final List<Usuario> usuarios = new ArrayList<>();
     private final PasswordEncoder passwordEncoder;
     public List<Usuario> ListarUsuarios;
+
+
     @Autowired
     private JwtService jwtService; // injeta o JwtService
 
-    public AuthService(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
+
 
     // Cadastro
     public Usuario cadastrar(RegisterRequest request) {
@@ -60,7 +62,7 @@ public class AuthService {
         }
 
         // gera token JWT
-        String token = JwtService.generateToken(usuario.get().getEmail());
+        String token = jwtService.generateToken(request.getEmail());
         
         
 
@@ -71,6 +73,9 @@ public class AuthService {
     public List<Usuario> listarUsuarios() {
         return new ArrayList<>(usuarios);
     }
+
+
+
 
    /* public ResponseEntity<?> login(LoginRequest request)
     {

@@ -5,18 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-@AllArgsConstructor
 
 
-public class AuthResponse
-{
 
-Usuario usuario;
-String token;
+public record AuthResponse
+        (Usuario usuario,
+        String token
+        )
 
-
-    public AuthResponse(Usuario usuario, String token) {
-    }
-}
+{}

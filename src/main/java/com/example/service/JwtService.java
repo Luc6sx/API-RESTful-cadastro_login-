@@ -12,23 +12,21 @@ import java.util.Date;
 @Service
 public class JwtService
 {
-
     @Value("${jwt.secret}")// chave secreta (em application.properties)
-    private String secret;
-
+    private  String secret;
     @Value("${jwt.expiration}") // Tempo de expiração (ex: 3600000ms / 1h)
-    private Long expiration;
+    private  Long expiration;
 
     //gerar um token JWT
-    public static String generateToken(String email)
+    public  String generateToken(String email)
     {
 
-            SecretKey key = Keys.hmacShaKeyFor(secret.getBytes()); // cria chave de assinatura
-            return Jwts.builder()
-                    .subject(email)
-                    .expiration(new Date(System.currentTimeMillis() + expiration)) // Expiração
-                    .signWith(key) //assina Token
-                    .compact(); // converte para String
+        SecretKey key = Keys.hmacShaKeyFor(secret.getBytes()); // cria chave de assinatura
+        return Jwts.builder()
+                .subject(email)
+                .expiration(new Date(System.currentTimeMillis() + expiration)) // Expiração
+                .signWith(key) //assina Token
+                .compact(); // converte para String
 
     }
 
