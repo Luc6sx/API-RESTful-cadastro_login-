@@ -14,20 +14,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@AllArgsConstructor
+
 @Service
-@RequiredArgsConstructor
 
 public class AuthService {
     private final List<Usuario> usuarios = new ArrayList<>();
+
     private final PasswordEncoder passwordEncoder;
     public List<Usuario> ListarUsuarios;
 
 
-    @Autowired
+
     private JwtService jwtService; // injeta o JwtService
 
 
+    public AuthService(PasswordEncoder passwordEncoder, JwtService jwtService) {
+        this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
+    }
 
     // Cadastro
     public Usuario cadastrar(RegisterRequest request) {

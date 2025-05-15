@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequiredArgsConstructor
+
 @RestController
 @RequestMapping("api/auth")
 public class AuthController {
@@ -18,6 +18,9 @@ public class AuthController {
 
     public final AuthService authService;
 
+    public AuthController(AuthService authService) {
+        this.authService = authService;
+    }
 
 
     //cadastra usuario e manda ao RegisterRequest
